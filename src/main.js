@@ -3,8 +3,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import firebase from 'firebase'
 
 Vue.config.productionTip = false
+
+
+
+  // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyCzniP0Wu1UpfyFwcs3w6PSvE95bMdA0zM",
+    authDomain: "root-d486a.firebaseapp.com",
+    databaseURL: "https://root-d486a.firebaseio.com",
+    projectId: "root-d486a",
+    storageBucket: "root-d486a.appspot.com",
+    messagingSenderId: "980123833348"
+  };
+  firebase.initializeApp(config);
+
 
 /* eslint-disable no-new */
 new Vue({
