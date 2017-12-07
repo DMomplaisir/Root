@@ -10,7 +10,8 @@ Vue.config.productionTip = false
 
 
   // Initialize Firebase
-    var config = {
+    let app;
+    let config = {
     apiKey: "AIzaSyCzniP0Wu1UpfyFwcs3w6PSvE95bMdA0zM",
     authDomain: "root-d486a.firebaseapp.com",
     databaseURL: "https://root-d486a.firebaseio.com",
@@ -19,12 +20,14 @@ Vue.config.productionTip = false
     messagingSenderId: "980123833348"
   };
   firebase.initializeApp(config);
-
-
+  firebase.auth().onAuthStateChanged(function(user){
+      if (!app) {
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+        app = new Vue({
+          el: '#app',
+          template: '<App/>',
+          components: { App },
+          router
+        })
+      }
+    });
