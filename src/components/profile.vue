@@ -11,7 +11,7 @@
       <input type="radio" id="Organizer" v-model="type" value="Organizer">
       <label for="Organizer">Organizer</label>
     </div>
-      <div v-if="type == 'Organizer'"">
+      <div v-if="type == 'Organizer'">
         <form v-on:submit="createOrganizerData">
           <input type="text" placeholder="Name" v-model="name"><br>
           <input type="text" placeholder="Twitter" v-model="twitter"><br>
