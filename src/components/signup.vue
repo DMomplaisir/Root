@@ -17,7 +17,7 @@
 
 <script>
   import firebase from 'firebase'
-
+  import vuefire from 'vuefire'
   export default {
     name: 'signUp',
     data: function() {

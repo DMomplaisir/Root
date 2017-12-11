@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
+import vuefire from 'vuefire'
 
 
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import Profile from '@/components/Profile'
+import Client from '@/components/client-intro'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -37,7 +39,17 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/client',
+      name: 'Root - find ',
+      component: Client,
+      meta: {
+        requiresAuth: true,
+        isOrganizer: false
+      }
     }
+
     // {
     //   path: '/',
     //   name: 'HelloWorld',
@@ -48,10 +60,20 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser;
+  let userStatus = function() {
+    var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      if (snapshot.val().type == "Organizer"){
+        return true;
+      }
+  })};
+
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  let isOrganizer = to.matched.some(record => record.meta.isOrganizer);
+
 
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('profile')
+  else if (!requiresAuth && currentUser && !isOrganizer) next('client')
   else next()
 })
 
