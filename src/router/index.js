@@ -25,7 +25,10 @@ let router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        requiresAuth: false,
+      }
     },
     {
       path: '/sign-up',
