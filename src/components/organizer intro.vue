@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script>
+<script>bm
   export default {
     name: 'organizer intro',
     data: function() {
