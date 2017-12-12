@@ -6,9 +6,14 @@
 </template>
 
 <script>
+import vuefire from 'vuefire'
+
+
 export default {
-  name: 'app'
+  name: 'app',
+
 }
+
 </script>
 
 <style>
