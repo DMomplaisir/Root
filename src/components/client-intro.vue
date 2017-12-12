@@ -5,8 +5,7 @@
     <div class ="col s8">
     <div class="card blue-grey darken-1" v-for = "protest in protests">
       <div class="card-content white-text">
-        <span class="card-title">{{protest.name}} {{temp_uid}}</span>
-        {{protest.key}}
+        <span class="card-title">{{protest.name}}</span>
         <p>{{protest.description}}</p>
       </div>
       <div class = "card-action">
@@ -24,7 +23,7 @@
 import {db} from '../firebase'
 import {auth} from '../firebase'
 import {temp_uid} from '../firebase'
-console.log(temp_uid);
+
 export default {
   name: 'Client',
   data: function() {
@@ -33,11 +32,27 @@ export default {
       name: '',
       description: '',
       protestId: '',
-
+      users: {},
+      uid: null
     }
   },
-  firebase: {
+  beforeMount(){
+    let currentUser = auth.currentUser;
+    if (currentUser){
+      this.uid = currentUser.uid;
+    }
+    else {
+      let authListenerUnsubscribe = auth.onAuthStateChanged(user => {
+        if (user) {
+          this.uid = user.uid;
+          authListenerUnsubscribe();
+        }
 
+      });
+    }
+  },
+
+  firebase: {
     protests: {
       source: db.ref('protests'),
       cancelCallback(err) {
@@ -47,9 +62,9 @@ export default {
     protests_followers: {
       source: db.ref('protests/' + 'followers')
     },
+    users:{
+      source: db.ref('users/' + this.uid + '/following'),
 
-    user:{
-      source: db.ref('users/' + this.temp_uid + '/following'),
       cancelCallback(err) {
         console.log(err)
       }
@@ -59,11 +74,11 @@ export default {
     followNew: function(protest) {
       // var profileRef = db.ref('users/' + userId)
       console.log(protest)
-      this.$firebaseRefs.user.set({
-        name: this.protest
+      this.$firebaseRefs.users.push({
+        name: protest
       })
-      this.$firebaseRefs.protests_followers.set({
-        uid: this.temp_uid
+      this.$firebaseRefs.protests_followers.push({
+        uid: this.uid
       })
     }
   }

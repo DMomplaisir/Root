@@ -40,7 +40,7 @@ let router = new Router({
       name: 'Profile',
       component: Profile,
       meta: {
-        requiresAuth: true
+
       }
     },
     {
@@ -74,10 +74,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   let isOrganizer = to.matched.some(record => record.meta.isOrganizer);
 
-
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser && !isOrganizer) next('client')
-  else next()
+  next()
 })
 
 export default router

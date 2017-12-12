@@ -11,6 +11,7 @@ import vuefire from 'vuefire'
 
 export default {
   name: 'app',
+
 }
 
 </script>
