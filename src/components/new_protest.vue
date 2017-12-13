@@ -3,7 +3,7 @@
     <h3>Make a New Protest</h3>
     <input type="text" v-model="protest_name" placeholder="Name of Protest"><br>
     <input type="text" v-model="protest_description" placeholder="Description of Protest"><br>
-    <input type="text" v-model="social_interests" placeholder="Social Interests"><br>
+    <input type="text" v-model="datetime" placeholder="Date Time"><br>
     <button v-on:click="createProtest">Submit Protest</button>
   </div>
 </template>
@@ -20,6 +20,7 @@ import {auth} from '../firebase'
         protest_name: '',
         protest_description: '',
         social_interests: '',
+        datetime: '',
         uid: null
       }
     },
@@ -40,10 +41,13 @@ import {auth} from '../firebase'
     methods: {
       createProtest: function() {
 
-        db.ref('protests' + '/' + this.uid).set({
-          protest_name: this.protest_name,
-          protest_description: this.protest_description,
-          social_interests: this.social_interests,
+        db.ref('protests' + '/' + this.protest_name).set({
+          name: this.protest_name,
+          organizerUid: this.uid,
+          description: this.protest_description,
+          datetime: this.datetime,
+          status: 'inactive',
+          people: []
         })
         this.$router.replace('organizer_intro')
       }

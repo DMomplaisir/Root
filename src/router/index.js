@@ -8,6 +8,8 @@ import Login from '@/components/Login'
 import SignUp from '@/components/signup'
 import profile from '@/components/profile'
 import Client from '@/components/client-intro'
+import NewProtest from '@/components/new_protest'
+import OrganizerIntro from '@/components/organizer_intro'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -47,13 +49,19 @@ let router = new Router({
       meta: {
 
       }
-    }
+    },
 
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // }
+    {
+      path: '/new_protest',
+      name: 'newProtest',
+      component: NewProtest
+    },
+
+    {
+      path: '/organizer_intro',
+      name: 'organizerIntro',
+      component: OrganizerIntro
+    }
   ]
 })
 

@@ -11,10 +11,6 @@
       <label for="Organizer">Organizer</label>
     </div>
       <div v-if="type == 'Organizer'">
-=======
-      <div v-if="type == 'Organizer'">
-
->>>>>>> 0c87e8e8b6bc4b15d8378e97fb88b70e9dd6fce4
         <form v-on:submit="createOrganizerData">
           <input type="text" placeholder="Name" v-model="name"><br>
           <input type="text" placeholder="Twitter" v-model="twitter"><br>
