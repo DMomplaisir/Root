@@ -7,7 +7,7 @@ import router from './router'
 import firebase from 'firebase'
 import Vue from 'vue'
 import vuefire from 'vuefire'
-
+import GoogleMapsLoader from 'google-maps'
 
 
 Vue.use(vuefire);

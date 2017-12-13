@@ -10,6 +10,7 @@ import profile from '@/components/profile'
 import Client from '@/components/client-intro'
 import NewProtest from '@/components/new_protest'
 import OrganizerIntro from '@/components/organizer_intro'
+import ProtestClient from '@/components/protestclient'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -20,7 +21,6 @@ let router = new Router({
       path: '*',
       redirect: '/login'
     },
-
     {
       path: '/login',
       name: 'Login',
@@ -61,6 +61,11 @@ let router = new Router({
       path: '/organizer_intro',
       name: 'organizerIntro',
       component: OrganizerIntro
+    },
+    {
+      path: '/protestclient/:protestId',
+      name: 'protestclient',
+      component: ProtestClient
     }
   ]
 })
