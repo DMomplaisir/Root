@@ -1,12 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from 'firebase'
+import vuefire from 'vuefire'
 
 
 import Login from '@/components/Login'
+<<<<<<< HEAD
 import SignUp from '@/components/SignUp'
 import Profile from '@/components/Profile'
 import NewProtest from '@/components/new_protest'
+=======
+import SignUp from '@/components/signup'
+import profile from '@/components/profile'
+import Client from '@/components/client-intro'
+>>>>>>> d8fde344c5c9eaca5c35629c0a8b312103f11046
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -17,14 +24,14 @@ let router = new Router({
       path: '*',
       redirect: '/login'
     },
-    {
-      path: '/',
-      redirect: '/login'
-    },
+
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+
+      }
     },
     {
       path: '/sign-up',
@@ -34,9 +41,17 @@ let router = new Router({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile,
+      component: profile,
       meta: {
-        requiresAuth: true
+
+      }
+    },
+    {
+      path: '/client',
+      name: 'Root - find ',
+      component: Client,
+      meta: {
+
       }
     },
     {
@@ -44,9 +59,36 @@ let router = new Router({
       name: 'newProtest',
       component: newProtest
     }
+<<<<<<< HEAD
   ]
 })
 
 
+=======
+
+    // {
+    //   path: '/',
+    //   name: 'HelloWorld',
+    //   component: HelloWorld
+    // }
+  ]
+})
+
+router.beforeEach((to, from, next) => {
+  let currentUser = firebase.auth().currentUser;
+  let userStatus = function() {
+    var userId = firebase.auth().currentUser.uid;
+    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      if (snapshot.val().type == "Organizer"){
+        return true;
+      }
+  })};
+
+  // let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  // let isOrganizer = to.matched.some(record => record.meta.isOrganizer);
+
+  next()
+})
+>>>>>>> d8fde344c5c9eaca5c35629c0a8b312103f11046
 
 export default router

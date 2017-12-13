@@ -6,9 +6,13 @@
 </template>
 
 <script>
+import vuefire from 'vuefire'
+import firebase from 'firebase'
 export default {
-  name: 'app'
+  name: 'app',
+
 }
+
 </script>
 
 <style>

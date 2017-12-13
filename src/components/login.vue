@@ -1,25 +1,34 @@
 <template>
   <div class="login">
     <h3>Sign In</h3>
-    <input type="text" placeholder="Email"><br>
-    <input type="password" placeholder="Password"><br>
-    <button>Connection</button>
+    <input type="text" placeholder="Email" v-model="email"><br>
+    <input type="password" placeholder="Password" v-model="password"><br>
+    <button>Log in</button>
     <p> Don't have an account ? You can <router-link to="/sign-up">create one!</router-link></p>
   </div>
 </template>
 
 <script>
+import vuefire from 'vuefire'
+import {auth} from '../firebase'
   export default {
     name: 'login',
     data: function() {
-      return {}
+      return {
+        email: '',
+        password: ''
+      }
     },
     methods: {
-      login: function() {
-        this.$router.replace('hello')
-      }
+      login:  function() {
+          auth.signInWithEmailAndPassword(this.email, this.password).then(
+            function(user){
+              alert("Working")
+            }
+        )
     }
   }
+}
 </script>
 
 
