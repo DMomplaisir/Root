@@ -4,15 +4,6 @@
     <div v-if="type==''">
     <h3>Make Your Profile</h3>
     <h4>Are you a ...?</h4>
-<<<<<<< HEAD
-
-      <input type="radio" id="one" value="client" v-model="type">
-      <label for="one">Protestor</label>
-      <input type="radio" id="two" value="organizer" v-model="type">
-      <label for="two">Organizer</label>
-
-      <div v-if="type == 'Organizer'"">
-=======
       <input type="radio" id="Client" v-model="type" value="Client">
       <label for="Client">Client</label>
       <br>
@@ -20,7 +11,10 @@
       <label for="Organizer">Organizer</label>
     </div>
       <div v-if="type == 'Organizer'">
->>>>>>> master
+=======
+      <div v-if="type == 'Organizer'">
+
+>>>>>>> 0c87e8e8b6bc4b15d8378e97fb88b70e9dd6fce4
         <form v-on:submit="createOrganizerData">
           <input type="text" placeholder="Name" v-model="name"><br>
           <input type="text" placeholder="Twitter" v-model="twitter"><br>
