@@ -14,17 +14,3 @@ const firebaseApp = Firebase.initializeApp({
 // If you want to get fancy, use mixins or provide / inject to avoid redundant imports.
 export const db = firebaseApp.database();
 export const auth = firebaseApp.auth();
-
-var temp_uid = null;
-firebaseApp.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    var temp_uid = auth.currentUser.uid;
-    console.log('Confirming user Id' + temp_uid);
-
-    } else {
-    // No user is signed in.
-    console.log('yahurd');
-  }
-});
-
-export default temp_uid;

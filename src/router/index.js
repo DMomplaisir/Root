@@ -5,8 +5,8 @@ import vuefire from 'vuefire'
 
 
 import Login from '@/components/Login'
-import SignUp from '@/components/SignUp'
-import Profile from '@/components/Profile'
+import SignUp from '@/components/signup'
+import profile from '@/components/profile'
 import Client from '@/components/client-intro'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
@@ -18,16 +18,13 @@ let router = new Router({
       path: '*',
       redirect: '/login'
     },
-    {
-      path: '/',
-      redirect: '/login'
-    },
+
     {
       path: '/login',
       name: 'Login',
       component: Login,
       meta: {
-        requiresAuth: false,
+
       }
     },
     {
@@ -38,7 +35,7 @@ let router = new Router({
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile,
+      component: profile,
       meta: {
 
       }
@@ -48,8 +45,7 @@ let router = new Router({
       name: 'Root - find ',
       component: Client,
       meta: {
-        requiresAuth: true,
-        isOrganizer: false
+
       }
     }
 
@@ -71,8 +67,8 @@ router.beforeEach((to, from, next) => {
       }
   })};
 
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  let isOrganizer = to.matched.some(record => record.meta.isOrganizer);
+  // let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  // let isOrganizer = to.matched.some(record => record.meta.isOrganizer);
 
   next()
 })

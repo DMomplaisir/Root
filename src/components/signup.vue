@@ -6,7 +6,7 @@
     <input v-model="password" type="password" placeholder="Password"><br>
 
     <input type="radio" name="group1" id="protestor" value="Protestor" v-model="type">
-    <label for="protestor">Protesor</label>
+    <label for="protestor">Protestor</label>
     <input type="radio" name="group1" id="organizer" value="Organizer" v-model="type">
     <label for="organizer">Organizer</label><br>
 
@@ -34,6 +34,7 @@
         console.log('running')
         this.signUp();
         this.signIn();
+        alert('Completed')
       },
       signUp: function() {
         auth.createUserWithEmailAndPassword(this.email, this.password).then(
@@ -45,20 +46,6 @@
       },
 
       signIn: function() {
-        auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  .then(function() {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-    return firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-  })
-  .catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
         auth.signInWithEmailAndPassword(this.email, this.password).then(
           function(user){
             alert("Debugging")
