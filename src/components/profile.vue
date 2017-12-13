@@ -4,13 +4,8 @@
     <div v-if="type==''">
     <h3>Make Your Profile</h3>
     <h4>Are you a ...?</h4>
+      <div v-if="type == 'Organizer'">
 
-      <input type="radio" id="one" value="client" v-model="type">
-      <label for="one">Protestor</label>
-      <input type="radio" id="two" value="organizer" v-model="type">
-      <label for="two">Organizer</label>
-
-      <div v-if="type == 'Organizer'"">
         <form v-on:submit="createOrganizerData">
           <input type="text" placeholder="Name" v-model="name"><br>
           <input type="text" placeholder="Twitter" v-model="twitter"><br>
