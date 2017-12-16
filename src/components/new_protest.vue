@@ -4,6 +4,7 @@
     <input type="text" v-model="protest_name" placeholder="Name of Protest"><br>
     <input type="text" v-model="protest_description" placeholder="Description of Protest"><br>
     <input type="text" v-model="datetime" placeholder="Date Time"><br>
+    <input type="text" v-model="location" placeholder="Location"><br>
     <button v-on:click="createProtest">Submit Protest</button>
   </div>
 </template>
@@ -21,23 +22,25 @@ import {auth} from '../firebase'
         protest_description: '',
         social_interests: '',
         datetime: '',
+        location: '',
+        currentlocation: '',
         uid: null
       }
     },
-    beforeMount(){
+  /*  beforeMount(){
       let currentUser = auth.currentUser;
       if (currentUser){
         this.uid = currentUser.uid;
       }
       else {
-        let authListenerUnsubscribe = auth.onAuthStateChange(user => {
+        let authListenerUnsubscribe = auth.onAuthStateChanged(user => {
           if (user) {
             this.uid = currentUser.uid;
             authListenerUnsubscribe();
           }
         })
       }
-    },
+    }, */
     methods: {
       createProtest: function() {
 
@@ -46,6 +49,8 @@ import {auth} from '../firebase'
           organizerUid: this.uid,
           description: this.protest_description,
           datetime: this.datetime,
+          location: [this.latitude, this.longitude],
+          currentlocation: here,
           status: 'inactive',
           people: []
         })

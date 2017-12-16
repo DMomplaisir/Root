@@ -5,6 +5,7 @@
     <button v-on:click="createProtest">Create Protest</button>
     <button>View Protests</button>
     <button v-on:click="logout">Logout</button>
+    <button v-on:click="organizerActive">ACTIVATE</button>
   </div>
 </div>
 </template>
@@ -25,6 +26,10 @@ import firebase from 'firebase'
 
       createProtest: function() {
         this.$router.replace('new_protest')
+      },
+
+      organizerActive: function() {
+        this.$router.replace('organizer_active')
       }
     }
   }
