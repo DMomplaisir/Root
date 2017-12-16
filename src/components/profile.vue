@@ -18,7 +18,7 @@
           <input type="Submit">
         </form>
       </div>
-      <div v-if="type=='Client'">
+      <div v-if="type=='Protestor'">
         <h3>Citizen Registration</h3>
         <form v-on:submit="createClientData">
         <input type="text" placeholder="Name" v-model="name"><br>
@@ -40,22 +40,38 @@
 <script>
 import firebase from 'firebase'
 import {db} from '../firebase'
+import {auth} from '../firebase'
 export default {
   name: 'profile',
   data () {
     return {
-      type: '',
+      type: this.$route.query.type,
       name: '',
       twitter: '',
       interests: '',
-      phone: ''
-
+      phone: '',
+      uid: ''
+    }
+  },
+  beforeMount(){
+    let currentUser = auth.currentUser;
+    if (currentUser){
+      this.uid = currentUser.uid;
+    }
+    else {
+      let authListenerUnsubscribe = auth.onAuthStateChange(user => {
+        if (user) {
+          //recrusive function to continue searching for the userid
+          this.uid = currentUser.uid;
+          authListenerUnsubscribe();
+        }
+      })
     }
   },
 
   methods:{
     createOrganizerData: function(){
-      var userId = this.userId;
+      var userId = this.uid;
       db.ref('users' + '/' + userId).set({
       name: this.name,
       type: this.type,
@@ -66,7 +82,7 @@ export default {
     this.$router.replace('organizer_intro')
   },
   createClientData: function(){
-    var userId = this.userId;
+    var userId = this.uid;
       db.ref('users' + '/' + userId).set({
       name: this.name,
       type: this.type,
@@ -85,6 +101,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+input {
+  margin: 10px 0;
+  width: 20%;
+  padding: 15px;
+  border: 1px black;
+}
 h1, h2 {
   font-weight: normal;
 }
@@ -99,4 +121,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>

@@ -3,7 +3,7 @@
     <h3>Sign In</h3>
     <input type="text" placeholder="Email" v-model="email"><br>
     <input type="password" placeholder="Password" v-model="password"><br>
-    <button>Log in</button>
+    <button @click="login">Log in</button>
     <p> Don't have an account ? You can <router-link to="/sign-up">create one!</router-link></p>
   </div>
 </template>
@@ -24,8 +24,11 @@ import {auth} from '../firebase'
           auth.signInWithEmailAndPassword(this.email, this.password).then(
             function(user){
               alert("Working")
-            }
-        )
+            })
+            .catch(function(error){
+              var errorMessage = error.message
+              alert(error.message)
+            })
     }
   }
 }
@@ -40,6 +43,7 @@ import {auth} from '../firebase'
     margin: 10px 0;
     width: 20%;
     padding: 15px;
+    border: 1px black;
   }
   button {
     margin-top: 20px;

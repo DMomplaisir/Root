@@ -10,7 +10,7 @@ import vuefire from 'vuefire'
 import firebase from 'firebase'
 export default {
   name: 'app',
-
+  
 }
 
 </script>

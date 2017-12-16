@@ -71,6 +71,7 @@ export default {
         let currentUser = auth.currentUser;
         if (currentUser) {
             this.uid = currentUser.uid;
+            this.$bindAsArray('user', db.ref('users/' + this.uid + '/following'));
         } else {
             let authListenerUnsubscribe = auth.onAuthStateChanged(user => {
                 if (user) {
@@ -81,7 +82,6 @@ export default {
             });
         }
     },
-
     firebase: {
         protests: {
             source: db.ref('protests'),
@@ -91,20 +91,13 @@ export default {
         },
         protests_followers: {
             source: db.ref('protests/' + 'followers')
-        },
-        users: {
-            source: db.ref('users/' + this.uid + '/following'),
-
-            cancelCallback(err) {
-                console.log(err)
-            }
         }
     },
     methods: {
         followNew: function(protest) {
             // var profileRef = db.ref('users/' + userId)
             console.log(protest)
-            this.$firebaseRefs.users.push({
+            this.$firebaseRefs.user.push({
                 name: protest
             })
             this.$firebaseRefs.protests_followers.push({

@@ -7,10 +7,24 @@ import router from './router'
 import firebase from 'firebase'
 import Vue from 'vue'
 import vuefire from 'vuefire'
-import GoogleMapsLoader from 'google-maps'
+import * as VueGoogleMaps from 'vue2-google-maps'
+import Vuetify from 'vuetify'
 
-
+// intializing our applications connection to vuefire - a handler
+// for firebase/vue and VueGoogleMaps - so our dynamic
+// connection to GoogleMapsApi
 Vue.use(vuefire);
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyCzniP0Wu1UpfyFwcs3w6PSvE95bMdA0zM',
+    libraries: 'places',
+    installComponents: true
+  }
+});
+Vue.use(Vuetify);
+
+
+
 Vue.config.productionTip = false
 
 

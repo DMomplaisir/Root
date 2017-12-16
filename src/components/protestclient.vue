@@ -1,8 +1,25 @@
 <template>
   <div class="protestclient">
     <h2>{{protest.name}}</h2>
-    <div id = "map"></div>
+    <p>There are <i>{{protest.participants}}</i></p>
+    <div class = "map-container">
+      <gmap-map
+        :center="{lat:1.38, lng:103.8}"
+       :zoom="12"
+       style="width:100%; height:300px;">
+      <gmap-marker :position="{lat:1.38, lng:103.8}">
+      </gmap-marker>
+      <gmap-info-window :position="{lat:1.38, lng:103.8}">
+        Hello world!
+      </gmap-info-window>
+    </gmap-map>
   </div>
+  <div class="rights">
+
+
+  </div>
+  </div>
+
 
   </script>
 </template>
@@ -11,34 +28,20 @@
   import vuefire from 'vuefire'
   import {auth} from '../firebase'
   import {db} from '../firebase'
-  import GoogleMapsLoader from 'google-maps'
+  import * as VueGoogleMaps from 'vue2-google-maps'
+
   export default {
     name: 'ProtestClient',
 
     data: function() {
       return {
-        email: '',
-        password: '',
-        type: '',
-        id: this.$route.params.protestId
+        protestId: this.$route.params.protestId
     }
   },
   created() {
-    this.$bindAsObject('protest', db.ref('protests/' + this.id))
+    this.$bindAsObject('protest', db.ref('protests/' + this.protestId))
   },
-  firebase: {
-      protestsArr: {
-          source: db.ref('protests/'),
-          cancelCallback(err) {
-              console.log(err)
-          }
-      },
-      protestObj: {
-        source: db.ref('protests/' + this.id),
-        asObject: true
-      }
 
-  },
     methods: {
 
     }
@@ -66,8 +69,8 @@
     margin-top: 20px;
     font-size: 11px;
   }
-  #map {
-    height: 400px;
-    width: 100%;
+  .vue-map {
+    height: 300px;
+    width: 300px;
   }
 </style>

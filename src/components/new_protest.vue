@@ -4,6 +4,7 @@
     <input type="text" v-model="protest_name" placeholder="Name of Protest"><br>
     <input type="text" v-model="protest_description" placeholder="Description of Protest"><br>
     <input type="text" v-model="datetime" placeholder="Date Time"><br>
+    <input type="text" v-model="location" placeholder="location">
     <button v-on:click="createProtest">Submit Protest</button>
   </div>
 </template>
@@ -19,6 +20,7 @@ import {auth} from '../firebase'
       return {
         protest_name: '',
         protest_description: '',
+        location: '',
         social_interests: '',
         datetime: '',
         uid: null
