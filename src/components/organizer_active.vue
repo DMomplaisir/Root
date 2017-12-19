@@ -14,49 +14,21 @@ import {auth} from '../firebase'
 import {db} from '../firebase'
 
 export default {
-  name: 'organizerActive',
+  name: 'OrganizerActive',
   data: function() {
     return {
-      id: this.$route.params.protestId
+      protestId: this.$route.params.protestId,
     }
   },
 
   created() {
-    this.$bindAsObject('protest', db.ref('protests/' + this.id))
+    this.$bindAsObject('protest', db.ref('protests/' + this.protestId))
   },
-
-  /*
-  firebase: {
-    protestsArr: {
-      source: db.ref('protests/'),
-      cancelCallback(err) {
-        console.log(err)
-      }
-    },
-    protestObj: {
-      source: db.ref('protests/' + this.id),
-      asObject: true
-    }
-  },
-  */
-
-/*   var app = new Vue({
-  el: '#app',
-  data: {
-    position: null
-  },
-  mounted: function() {
-    if(navigator.geolocation) {
-       var self = this;
-       navigator.geolocation.getCurrentPosition(function(position){
-        self.position = position.coords;
-      })
-    }
-  }
-}); */
 
   methods:{
+    //gets the geolocation of the organizer
     geoFindMe: function(){
+      var self = this;
       var output = document.getElementById("out");
 
 
@@ -69,9 +41,11 @@ export default {
     var longitude = position.coords.longitude;
 
     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
-    db.ref('MJeib9lRqjfZcVdPGnBd3SUjM4W2' + '/' + this.protest_name).set({
-      location: this.position.coords.latitude + this.position.coords.longitude
+    self.$bindAsObject('protestlocation', db.ref('protests' + '/' + self.protestId + '/' + 'location'))
+    self.$firebaseRefs.protestlocation.set({
+      //sends the geolocation data to firebase
+      lng: position.coords.longitude,
+      lat: position.coords.latitude
   })
 
   }

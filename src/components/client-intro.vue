@@ -120,6 +120,7 @@ export default {
         }
     },
     methods: {
+        //followNew: adds the current protest to the user's list of following protests
         followNew: function(protest) {
             this.$bindAsArray('protestfollow', db.ref('protests/' + protest + '/following'));
 
@@ -132,14 +133,15 @@ export default {
                 uid: this.uid
             })
         },
+        //joinProtest: the user joins the protest when it is active
         joinProtest: function(protest) {
           console.log(protest);
           this.$bindAsArray('protestparticipants', db.ref('protests/' + protest + '/participants'));
           var number = this.$firebaseRefs.protestparticipants.length;
-          this.$firebaseRefs.protestparticipants.set{
+          this.$firebaseRefs.protestparticipants.set({
             participants: number
 
-          }
+          })
 
           this.$router.replace('protestclient/' + protest)
 

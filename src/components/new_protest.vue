@@ -27,6 +27,7 @@ import {auth} from '../firebase'
       }
     },
     beforeMount(){
+      //let user be authenticated and then get their id
       let currentUser = auth.currentUser;
       if (currentUser){
         this.uid = currentUser.uid;
@@ -42,6 +43,7 @@ import {auth} from '../firebase'
       }
     },
     methods: {
+      //user creates a protest that will be sent to firebase
       createProtest: function() {
 
         db.ref('protests' + '/' + this.protest_name).set({

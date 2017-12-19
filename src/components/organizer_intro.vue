@@ -17,16 +17,17 @@ import firebase from 'firebase'
       return {}
     },
     methods: {
+      //logs the user out and redirects back to the login page
       logout: function() {
         firebase.auth().signOut().then(() => {
           this.$router.replace('login')
         })
       },
-
+      //redirects to page to create a new protest
       createProtest: function() {
         this.$router.replace('new_protest')
       },
-
+      //redirects to page to view created protests
       viewProtests: function() {
         this.$router.replace('protests')
 

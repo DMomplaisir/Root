@@ -56,6 +56,7 @@
       }
     },
     methods: {
+      //creates a new account using email and password
       signUp: function() {
         var self = this
         auth.createUserWithEmailAndPassword(this.email, this.password).then(

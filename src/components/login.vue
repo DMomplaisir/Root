@@ -23,6 +23,7 @@ import {db} from '../firebase'
       }
     },
     methods: {
+      //logins users with their email and password, will redirect them to different pages depending if they're an organizer or protestor
       login:  function() {
         var self = this;
           auth.signInWithEmailAndPassword(this.email, this.password).then(
@@ -31,7 +32,7 @@ import {db} from '../firebase'
               var typeRef = db.ref('users/' + user.uid + '/type')
               typeRef.on('value', function(snapshot){
                 if (snapshot.val() == "Organizer"){
-                  self.$router.replace("#/organizer")
+                  self.$router.replace("organizer")
                 }
               else{
                 self.$router.replace('client')

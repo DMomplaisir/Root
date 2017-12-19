@@ -46,9 +46,6 @@
   import {auth} from '../firebase'
   import {db} from '../firebase'
   import * as VueGoogleMaps from 'vue2-google-maps'
-  import TwitterStream from 'twitter-stream-api'
-  import fs from 'fs'
-  import important from '../twitter'
 
 
   export default {

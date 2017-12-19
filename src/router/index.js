@@ -16,6 +16,7 @@ import OrganizerIntro from '@/components/organizer_intro'
 import ProtestClient from '@/components/protestclient'
 import Home from '@/components/home'
 import Protests from '@/components/protests'
+import OrganizerActive from '@/components/organizer_active'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -99,49 +100,54 @@ let router = new Router({
       path: '/protests',
       name: 'protests',
       component: Protests
+    },
+    {
+      path: '/organizer_active/:protestId',
+      name: 'organizeractive',
+      component: OrganizerActive
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  let currentUser = auth.onAuthStateChanged(function(user){
-    if (user) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  });
-
-  let orgStatus = function() {
-    var userId = auth.onAuthStateChanged(function(user){
-      if (user){
-        return user.uid;
-      }
-    })
-    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-      if (snapshot.val().type == "Organizer"){
-        return true;
-      }
-  })};
-  let newUser = function() {
-    var userId = currentUser.uid;
-    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-      if (snapshot.val().type == ""){
-        return true;
-      }
-  })};
-  let requiresLog = to.matched.some(record => record.meta.requiresLog);
-  let requiresOrg = to.matched.some(record => record.meta.requiresOrg);
-
-
-  if (!currentUser && requiresLog) next('home')
-  else if (currentUser && !orgStatus && requiresOrg && !newUser) next('client')
-  else if (currentUser && orgStatus && !requiresOrg && !newUser) next('organizer')
-  else next () // if not logged in, abort trying to go any thing
-  // else if userStatus,
-
-
+  // let currentUser = auth.onAuthStateChanged(function(user){
+  //   if (user) {
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // });
+  //
+  // let orgStatus = function() {
+  //   var userId = auth.onAuthStateChanged(function(user){
+  //     if (user){
+  //       return user.uid;
+  //     }
+  //   })
+  //   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  //     if (snapshot.val().type == "Organizer"){
+  //       return true;
+  //     }
+  // })};
+  // let newUser = function() {
+  //   var userId = currentUser.uid;
+  //   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  //     if (snapshot.val().type == ""){
+  //       return true;
+  //     }
+  // })};
+  // let requiresLog = to.matched.some(record => record.meta.requiresLog);
+  // let requiresOrg = to.matched.some(record => record.meta.requiresOrg);
+  //
+  //
+  // if (!currentUser && requiresLog) next('home')
+  // else if (currentUser && !orgStatus && requiresOrg && !newUser) next('client')
+  // else if (currentUser && orgStatus && !requiresOrg && !newUser) next('organizer')
+  // else next () // if not logged in, abort trying to go any thing
+  // // else if userStatus,
+  //
+  //
   next()
 })
 

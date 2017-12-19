@@ -53,6 +53,7 @@ export default {
       uid: ''
     }
   },
+  //let user be authenticated and then get their id
   beforeMount(){
     let currentUser = auth.currentUser;
     if (currentUser){
@@ -70,6 +71,7 @@ export default {
   },
 
   methods:{
+    //saves organizer profile data
     createOrganizerData: function(){
       var userId = this.uid;
       db.ref('users' + '/' + userId).set({
@@ -81,6 +83,7 @@ export default {
     });
     this.$router.replace('organizer_intro')
   },
+  //saves client profile data
   createClientData: function(){
     var userId = this.uid;
       db.ref('users' + '/' + userId).set({
