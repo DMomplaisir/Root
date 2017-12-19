@@ -12,6 +12,8 @@
   "dependencies": {
     "firebase": "^4.8.0",
     "save": "^2.3.1",
+    "twitter": "^1.7.1",
+    "twitter-stream-api": "^0.5.2",
     "vue": "^2.5.9",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.8.4",

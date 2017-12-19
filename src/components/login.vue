@@ -1,9 +1,11 @@
 <template>
   <div class="login">
     <h3>Sign In</h3>
+    <form>
     <input type="text" placeholder="Email" v-model="email"><br>
     <input type="password" placeholder="Password" v-model="password"><br>
     <button @click="login">Log in</button>
+  </form>
     <p> Don't have an account ? You can <router-link to="/sign-up">create one!</router-link></p>
   </div>
 </template>
@@ -11,6 +13,7 @@
 <script>
 import vuefire from 'vuefire'
 import {auth} from '../firebase'
+import {db} from '../firebase'
   export default {
     name: 'login',
     data: function() {
@@ -21,9 +24,20 @@ import {auth} from '../firebase'
     },
     methods: {
       login:  function() {
+        var self = this;
           auth.signInWithEmailAndPassword(this.email, this.password).then(
             function(user){
               alert("Working")
+              var typeRef = db.ref('users/' + user.uid + '/type')
+              typeRef.on('value', function(snapshot){
+                if (snapshot.val() == "Organizer"){
+                  self.$router.replace("#/organizer")
+                }
+              else{
+                self.$router.replace('client')
+              }
+              })
+
             })
             .catch(function(error){
               var errorMessage = error.message
