@@ -15,6 +15,7 @@ import NewProtest from '@/components/new_protest'
 import OrganizerIntro from '@/components/organizer_intro'
 import ProtestClient from '@/components/protestclient'
 import Home from '@/components/home'
+import Protests from '@/components/protests'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -92,6 +93,12 @@ let router = new Router({
         requiresLog: true,
         requiresOrg: false
       }
+    },
+
+    {
+      path: '/protests',
+      name: 'protests',
+      component: Protests
     }
   ]
 })

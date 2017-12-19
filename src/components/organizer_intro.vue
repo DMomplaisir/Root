@@ -3,7 +3,7 @@
   <div class="organizer_intro">
     <h3>What would you like to do?</h3>
     <button v-on:click="createProtest">Create Protest</button>
-    <button>View Protests</button>
+    <button v-on:click="viewProtests">View Protests</button>
     <button v-on:click="logout">Logout</button>
   </div>
 </div>
@@ -25,6 +25,11 @@ import firebase from 'firebase'
 
       createProtest: function() {
         this.$router.replace('new_protest')
+      },
+
+      viewProtests: function() {
+        this.$router.replace('protests')
+
       }
     }
   }

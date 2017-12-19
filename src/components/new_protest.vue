@@ -51,7 +51,7 @@ import {auth} from '../firebase'
           status: 'inactive',
           people: []
         })
-        this.$router.replace('organizer_intro')
+        this.$router.replace('organizer')
       }
     }
   }
