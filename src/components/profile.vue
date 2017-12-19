@@ -12,10 +12,13 @@
     </div>
       <div v-if="type == 'Organizer'">
         <form v-on:submit="createOrganizerData">
-          <input type="text" placeholder="Name" v-model="name"><br>
-          <input type="text" placeholder="Twitter" v-model="twitter"><br>
-          <input type="text" placeholder="Interests" v-model="interests"><br>
-          <input type="Submit">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Name" v-model="name"><br>
+          <label for="Twitter">Twitter</label>
+          <input type="text" id="Twitter"placeholder="Twitter" v-model="twitter"><br>
+          <label for="Interests">Interests</label>
+          <input type="text" id="Interests" placeholder="Interests" v-model="interests"><br>
+          <v-btn @click="createOrganizerData">Submit</v-btn>
         </form>
       </div>
       <div v-if="type=='Protestor'">

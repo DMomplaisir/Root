@@ -11,6 +11,7 @@
 
 <script>
 import firebase from 'firebase'
+import {auth} from '../firebase'
   export default {
     name: 'organizerIntro',
     data: function() {
@@ -19,7 +20,7 @@ import firebase from 'firebase'
     methods: {
       //logs the user out and redirects back to the login page
       logout: function() {
-        firebase.auth().signOut().then(() => {
+        auth.signOut().then(() => {
           this.$router.replace('login')
         })
       },

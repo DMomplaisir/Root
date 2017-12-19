@@ -4,8 +4,7 @@
     <input type="text" v-model="protest_name" placeholder="Name of Protest"><br>
     <input type="text" v-model="protest_description" placeholder="Description of Protest"><br>
     <input type="text" v-model="datetime" placeholder="Date Time"><br>
-    <input type="text" v-model="location" placeholder="location">
-    <button v-on:click="createProtest">Submit Protest</button>
+    <v-btn v-on:click="createProtest">Submit Protest</v-btn>
   </div>
 </template>
 
@@ -54,6 +53,10 @@ import {auth} from '../firebase'
           status: 'inactive',
           participants: 0,
           people: []
+        })
+
+        db.ref('users/' + this.uid + '/currentProtests/').push({
+          name: this.protest_name
         })
         this.$router.replace('organizer')
       }

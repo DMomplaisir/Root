@@ -5,12 +5,12 @@
     <div class = "map-container">
       <gmap-map
         :center= protest_location
-       :zoom="13"
+       :zoom="18"
        style="width:100%; height:300px;">
       <gmap-marker :position=protest_location>
       </gmap-marker>
       <gmap-info-window :position=protest_location>
-        We're here!
+        Protest is this Way!
       </gmap-info-window>
     </gmap-map>
   </div>
@@ -21,7 +21,7 @@
       <li>Peacefully assemble to excervise your first amendment right to protest</li>
       <li>Protest in traditional 'public forums' such as streets, sidewalks, and parks as long as you aren't blocking traffic</li>
       <li>Protest without a permit in response to recent events</li>
-      <li>Distribute leaflets and other literature on public sidewalks without a permit </li>>
+      <li>Distribute leaflets and other literature on public sidewalks without a permit </li>
       <li>Photograph or videotaps cops</li>
     </ul>
     <h4> When stopped by police</h4>

@@ -4,7 +4,7 @@
     <form>
     <input type="text" placeholder="Email" v-model="email"><br>
     <input type="password" placeholder="Password" v-model="password"><br>
-    <button @click="login">Log in</button>
+    <v-btn @click="login">Log in</v-btn>
   </form>
     <p> Don't have an account ? You can <router-link to="/sign-up">create one!</router-link></p>
   </div>
@@ -28,7 +28,7 @@ import {db} from '../firebase'
         var self = this;
           auth.signInWithEmailAndPassword(this.email, this.password).then(
             function(user){
-              alert("Working")
+              alert("Logged In")
               var typeRef = db.ref('users/' + user.uid + '/type')
               typeRef.on('value', function(snapshot){
                 if (snapshot.val() == "Organizer"){
