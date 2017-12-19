@@ -18,7 +18,6 @@
             </v-layout>
           </section>
           <v-parallax src="http://i.dailymail.co.uk/i/pix/2017/03/07/09/3E068BF100000578-4288896-image-a-10_1488877821962.jpg" height="800"/>
-
         </v-content>
       </v-app light>
 

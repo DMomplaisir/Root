@@ -34,6 +34,7 @@ import {auth} from '../firebase'
       else {
         let authListenerUnsubscribe = auth.onAuthStateChange(user => {
           if (user) {
+            //recrusive function to continue searching for the userid
             this.uid = currentUser.uid;
             authListenerUnsubscribe();
           }

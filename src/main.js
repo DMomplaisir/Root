@@ -24,7 +24,6 @@ Vue.use(VueGoogleMaps, {
 Vue.use(Vuetify);
 
 
-
 Vue.config.productionTip = false
 
 

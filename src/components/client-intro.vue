@@ -15,16 +15,14 @@ li {
     margin: 0 10px;
 }
 
-a {
-    color: #42b983;
-}
+
 
 </style>
 
 <template>
 
 <div>
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col s8">
                 <div class="card blue-grey darken-1" v-for="protest in protests">
@@ -40,7 +38,35 @@ a {
             </div>
         </div>
     </div>
+    <p>Working on the new design of this </p> -->
+<v-app>
+    <v-container>
+    <v-layout v-for="protest in protests" :key="protest.name" class="mb-2">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+        <v-card-media src="" height="200px">
+        </v-card-media>
+        <v-card-title primary title >
+          <div>
+            <h3 class="headline mb-0" color="white"> {{protest.name}} </h3>
+            <div>{{protest.description}}</div>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange" @click="followNew(protest.name)">Follow</v-btn>
+          <v-btn flat color="orange" v-if="protest.status === 'active'" @click="joinProtest(protest.name)"> Join Now </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+    </v-layout>
+  </v-container>
+</v-app>
+
 </div>
+
+
+
+
 
 </template>
 
@@ -90,19 +116,34 @@ export default {
             }
         },
         protests_followers: {
-            source: db.ref('protests/' + 'followers')
+            source: db.ref('protests/' +  'followers')
         }
     },
     methods: {
         followNew: function(protest) {
+            this.$bindAsArray('protestfollow', db.ref('protests/' + protest + '/following'));
+
             // var profileRef = db.ref('users/' + userId)
             console.log(protest)
             this.$firebaseRefs.user.push({
                 name: protest
             })
-            this.$firebaseRefs.protests_followers.push({
+            this.$firebaseRefs.protestfollow.push({
                 uid: this.uid
             })
+        },
+        joinProtest: function(protest) {
+          console.log(protest);
+          this.$bindAsArray('protestparticipants', db.ref('protests/' + protest + '/participants'));
+          var number = this.$firebaseRefs.protestparticipants.length;
+          this.$firebaseRefs.protestparticipants.set{
+            participants: number
+
+          }
+
+          this.$router.replace('protestclient/' + protest)
+
+
         }
     }
 
