@@ -50,6 +50,7 @@ import {auth} from '../firebase'
           description: this.protest_description,
           datetime: this.datetime,
           status: 'inactive',
+          participants: 0,
           people: []
         })
         this.$router.replace('organizer_intro')
