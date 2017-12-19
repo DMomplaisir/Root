@@ -142,6 +142,16 @@ export default {
             participants: number
 
           })
+=======
+          this.$bindAsObject('protestparticipants', db.ref('protests/' + protest))
+          this.$bindAsObject('protestsarr', db.ref('protests/' + protest))
+
+          var number = this.protestparticipants.participants + 1
+          this.$bindAsObject('protestpart', db.ref('protests/' + protest + '/participants'))
+
+
+          this.$firebaseRefs.protestsarr.child('participants').set(number)
+>>>>>>> dylan_versiontoend
 
           this.$router.replace('protestclient/' + protest)
 

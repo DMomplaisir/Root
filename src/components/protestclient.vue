@@ -1,7 +1,7 @@
 <template>
   <div class="protestclient">
     <h2>{{protest.name}}</h2>
-    <p>There are <i>{{protest.participants}}</i></p>
+    <p>There are <i>{{protest.participants}}</i> other protestors</p>
     <div class = "map-container">
       <gmap-map
         :center= protest_location
@@ -30,7 +30,7 @@
       <li> Ask if you're free to leave. If you're under arrest, you have a right to know why.</li>
       <li> You have the right to remain silent </li>
     </ul>
-    <v-btn @click="">Magic</v-btn>
+    <v-btn @click="moveEmergencyMode">FEEL UNSAFE</v-btn>
   </div>
 
 
@@ -56,10 +56,6 @@
         tweets: []
       }
   },
-beforeMount(){
-  important();
-
-},
   created() {
     this.$bindAsObject('protest', db.ref('protests/' + this.protestId))
     this.$bindAsObject('protest_location', db.ref('protests/' + this.protestId + '/location'))
@@ -67,13 +63,12 @@ beforeMount(){
 
 
   },
-  mounted(){
 
-
-  },
   methods: {
       // Do awesome stuff with the results here
-
+      moveEmergencyMode: function(){
+        this.$router.replace('emergencymode')
+      }
     }
   }
 

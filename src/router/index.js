@@ -17,6 +17,7 @@ import ProtestClient from '@/components/protestclient'
 import Home from '@/components/home'
 import Protests from '@/components/protests'
 import OrganizerActive from '@/components/organizer_active'
+import EmergencyMode from '@/components/emergencymode'
 // when making a new file, add it to the routers by saying import [nameOfComponent] from '@/components/[name of file]'
 
 Vue.use(Router)
@@ -105,6 +106,13 @@ let router = new Router({
       path: '/organizer_active/:protestId',
       name: 'organizeractive',
       component: OrganizerActive
+=======
+    {
+      path: '/emergencymode',
+      name: 'Emergency Mode',
+      component: EmergencyMode,
+
+>>>>>>> dylan_versiontoend
     }
   ]
 })
