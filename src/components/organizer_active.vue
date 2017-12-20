@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class ="organizer_active">
-      <h3> Track your Location </h3>
+      <h3> 'this.protest_name' </h3>
       <p><button v-on:click="geoFindMe">Show my location</button></p>
       <div id="out"></div>
     </div>

@@ -137,12 +137,7 @@ export default {
         joinProtest: function(protest) {
           console.log(protest);
           this.$bindAsArray('protestparticipants', db.ref('protests/' + protest + '/participants'));
-          var number = this.$firebaseRefs.protestparticipants.length;
-          this.$firebaseRefs.protestparticipants.set({
-            participants: number
 
-          })
-=======
           this.$bindAsObject('protestparticipants', db.ref('protests/' + protest))
           this.$bindAsObject('protestsarr', db.ref('protests/' + protest))
 

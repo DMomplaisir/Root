@@ -15,6 +15,7 @@ import NewProtest from '@/components/new_protest'
 import OrganizerIntro from '@/components/organizer_intro'
 import ProtestClient from '@/components/protestclient'
 import Home from '@/components/home'
+
 import Protests from '@/components/protests'
 import OrganizerActive from '@/components/organizer_active'
 import EmergencyMode from '@/components/emergencymode'
@@ -104,9 +105,10 @@ let router = new Router({
     },
     {
       path: '/organizer_active/:protestId',
+      path: '/organizer_active',
       name: 'organizeractive',
       component: OrganizerActive
-=======
+},
     {
       path: '/emergencymode',
       name: 'Emergency Mode',
