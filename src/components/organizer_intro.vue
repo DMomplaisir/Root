@@ -4,7 +4,6 @@
     <h3>What would you like to do?</h3>
     <button v-on:click="createProtest">Create Protest</button>
     <button v-on:click="viewProtests">View Protests</button>
-    <button v-on:click="activate">Activate</button>
     <button v-on:click="logout">Logout</button>
   </div>
 </div>
@@ -35,12 +34,6 @@ import {db} from '../firebase'
       viewProtests: function() {
         this.$router.replace('protests')
 
-      },
-
-      activate: function() {
-        this.$bindAsObject('protestsarr', db.ref('protests/' + 'Workers Strike'));
-        var status = 'active';
-        this.$firebaseRefs.protestsarr.child('status').set(status);
       }
     }
   }

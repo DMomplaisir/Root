@@ -78,11 +78,11 @@ export default {
     },
 
   methods: {
-    joinProtest: function() {
+    joinProtest: function(protest) {
       this.$bindAsObject('protestsarr', db.ref('protests/' + 'Workers Strike'));
       var status = 'active';
       this.$firebaseRefs.protestsarr.child('status').set(status);
-      this.$router.replace('organizer_active');
+      this.$router.replace('organizer_active' + '/' + protest);
     }
     //protests: function() {
 

@@ -48,6 +48,7 @@ export default {
   name: 'profile',
   data () {
     return {
+      // based on the type of acct sent by the last route, will mark what this page will look likes
       type: this.$route.query.type,
       name: '',
       twitter: '',
@@ -58,6 +59,7 @@ export default {
   },
   //let user be authenticated and then get their id
   beforeMount(){
+    //recursive function prior to page creation to get uid
     let currentUser = auth.currentUser;
     if (currentUser){
       this.uid = currentUser.uid;

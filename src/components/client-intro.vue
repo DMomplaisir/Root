@@ -128,6 +128,7 @@ export default {
             console.log(protest)
             this.$firebaseRefs.user.push({
                 name: protest
+
             })
             this.$firebaseRefs.protestfollow.push({
                 uid: this.uid
@@ -136,7 +137,6 @@ export default {
         //joinProtest: the user joins the protest when it is active
         joinProtest: function(protest) {
           console.log(protest);
-          this.$bindAsArray('protestparticipants', db.ref('protests/' + protest + '/participants'));
 
           this.$bindAsObject('protestparticipants', db.ref('protests/' + protest))
           this.$bindAsObject('protestsarr', db.ref('protests/' + protest))
@@ -146,7 +146,6 @@ export default {
 
 
           this.$firebaseRefs.protestsarr.child('participants').set(number)
->>>>>>> dylan_versiontoend
 
           this.$router.replace('protestclient/' + protest)
 

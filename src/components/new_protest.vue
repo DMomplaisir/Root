@@ -17,6 +17,7 @@ import {auth} from '../firebase'
     name: 'newProtest',
     data: function() {
       return {
+        //set the fields of the application
         protest_name: '',
         protest_description: '',
         location: '',
@@ -54,7 +55,7 @@ import {auth} from '../firebase'
           participants: 0,
           people: []
         })
-
+        //set to the user addiionaly protests
         db.ref('users/' + this.uid + '/currentProtests/').push({
           name: this.protest_name
         })

@@ -5,7 +5,7 @@
       </video>
       <div> {{video}} </div>
       <button id="rec" v-on:click="recordMode()">Record</button>
-      <button v-on:click="stop()"> Stop bb </button>
+      <button v-on:click="stop()"> Stop  </button>
     </v-container>
 
   </v-app>
@@ -26,6 +26,9 @@ export default{
 },
   methods: {
     recordMode: function() {
+      //just began the process on making an emergencymode which would develop a videoStream
+      // and connect it to the firebase Storage, and then allow for our users to reference
+      // this videos in case of police brutality, will be further completed a version
       var videoStream;
       let recordingTime = 5000;
       function wait(delayInMS) {
@@ -33,7 +36,10 @@ export default{
       }
       var self = this;
       beginProcess();
+
       function beginProcess() {
+        // utilized an async function of js called Get UserMedia which develops a media tstream
+        // if getUserMedia works,
         navigator.mediaDevices.getUserMedia({video:true})
         .then(useMedia)
         .catch (e => {console.error('getUserMedia is not working ' + e)});
@@ -44,9 +50,10 @@ export default{
         var video = document.querySelector('video');
         video.src = URL.createObjectURL(stream);
         var recorder = new MediaRecorder(stream, {mimeType: "video/webm"});
-
+        // pushes the chunks of the video into .video
         recorder.ondatavailable = function(event){
             self.video.push(event.data);
+            console.log(event.data);
         }
         recorder.start(100);
 

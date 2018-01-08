@@ -14,6 +14,7 @@
       </gmap-info-window>
     </gmap-map>
   </div>
+  <br>
   <div class="rights">
     <h2>Know Your Rights</h2>
     <h4> When protesting you have the right to ... </h4>
@@ -67,7 +68,7 @@
   methods: {
       // Do awesome stuff with the results here
       moveEmergencyMode: function(){
-        this.$router.replace('emergencymode')
+        this.$router.replace('/emergencymode')
       }
     }
   }
@@ -77,9 +78,7 @@
 </script>
 
 <style scoped>
-  .signUp {
-    margin-top: 40px;
-  }
+  
   input {
     margin: 10px 0;
     width: 20%;

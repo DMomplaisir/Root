@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class ="organizer_active">
-      <h3> 'this.protest_name' </h3>
+      <h3> Track your Location </h3>
       <p><button v-on:click="geoFindMe">Show my location</button></p>
       <div id="out"></div>
     </div>
@@ -43,12 +43,12 @@ export default {
     output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
     self.$bindAsObject('protestlocation', db.ref('protests' + '/' + self.protestId + '/' + 'location'))
     self.$firebaseRefs.protestlocation.set({
-      //sends the geolocation data to firebase
-      lng: position.coords.longitude,
-      lat: position.coords.latitude
-  })
+        //sends the geolocation data to firebase
+        lng: position.coords.longitude,
+        lat: position.coords.latitude
+    })
 
-  }
+    }
 
     function error() {
       output.innerHTML = "Unable to retrieve your location";

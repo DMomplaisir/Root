@@ -25,6 +25,7 @@ import {db} from '../firebase'
     methods: {
       //logins users with their email and password, will redirect them to different pages depending if they're an organizer or protestor
       login:  function() {
+        // self ref, is attempting to sustain ref to the "this" in the broader scope
         var self = this;
           auth.signInWithEmailAndPassword(this.email, this.password).then(
             function(user){
