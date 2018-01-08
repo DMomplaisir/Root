@@ -15,7 +15,6 @@ import NewProtest from '@/components/new_protest'
 import OrganizerIntro from '@/components/organizer_intro'
 import ProtestClient from '@/components/protestclient'
 import Home from '@/components/home'
-
 import Protests from '@/components/protests'
 import OrganizerActive from '@/components/organizer_active'
 import EmergencyMode from '@/components/emergencymode'
@@ -26,6 +25,8 @@ Vue.use(Router)
 // Sets up routes, and makes sure that each page is connected to
 // a vue component
 let router = new Router({
+  // router allows for the links to be linked towards different components and take in dynamic information
+
   routes: [
     {
       path: '*',
@@ -105,7 +106,6 @@ let router = new Router({
     },
     {
       path: '/organizer_active/:protestId',
-      path: '/organizer_active',
       name: 'organizeractive',
       component: OrganizerActive
 },
@@ -114,50 +114,49 @@ let router = new Router({
       name: 'Emergency Mode',
       component: EmergencyMode,
 
->>>>>>> dylan_versiontoend
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-  // let currentUser = auth.onAuthStateChanged(function(user){
-  //   if (user) {
-  //     return true;
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // });
-  //
-  // let orgStatus = function() {
-  //   var userId = auth.onAuthStateChanged(function(user){
-  //     if (user){
-  //       return user.uid;
-  //     }
-  //   })
-  //   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  //     if (snapshot.val().type == "Organizer"){
-  //       return true;
-  //     }
-  // })};
-  // let newUser = function() {
-  //   var userId = currentUser.uid;
-  //   return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  //     if (snapshot.val().type == ""){
-  //       return true;
-  //     }
-  // })};
-  // let requiresLog = to.matched.some(record => record.meta.requiresLog);
-  // let requiresOrg = to.matched.some(record => record.meta.requiresOrg);
-  //
-  //
-  // if (!currentUser && requiresLog) next('home')
-  // else if (currentUser && !orgStatus && requiresOrg && !newUser) next('client')
-  // else if (currentUser && orgStatus && !requiresOrg && !newUser) next('organizer')
-  // else next () // if not logged in, abort trying to go any thing
-  // // else if userStatus,
-  //
-  //
+  let currentUser = auth.onAuthStateChanged(function(user){
+    if (user) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+
+  let orgStatus = function() {
+    var userId = auth.onAuthStateChanged(function(user){
+      if (user){
+        return user.uid;
+      }
+    })
+    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      if (snapshot.val().type == "Organizer"){
+        return true;
+      }
+  })};
+  let newUser = function() {
+    var userId = currentUser.uid;
+    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+      if (snapshot.val().type == ""){
+        return true;
+      }
+  })};
+  let requiresLog = to.matched.some(record => record.meta.requiresLog);
+  let requiresOrg = to.matched.some(record => record.meta.requiresOrg);
+
+
+  if (!currentUser && requiresLog) next('home')
+  else if (currentUser && !orgStatus && requiresOrg && !newUser) next('client')
+  else if (currentUser && orgStatus && !requiresOrg && !newUser) next('organizer')
+  else next () // if not logged in, abort trying to go any thing
+  // else if userStatus,
+
+
   next()
 })
 
